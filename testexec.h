@@ -28,10 +28,10 @@
     exit(TEST_RETURN_PASSED); \
 } while(0)
 
-#define TEST_SKIPPED(...) do {
-    TEST_MESSAGE("Test skipped. " __VA_ARGS__);
-    exit(TEST_RETURN_SKIPPED);
-}
+#define TEST_SKIPPED(...) do { \
+    TEST_MESSAGE("Test skipped. " __VA_ARGS__); \
+    exit(TEST_RETURN_SKIPPED); \
+} while(0)
 
 
 #define _TEST_ASSERT_IMPL(cond, func) do { \
@@ -41,7 +41,7 @@
 } while(0)
 
 #define TEST_ASSERT(cond) \
-    _TEST_ASSERT_IMPL(cond, TEST_FAIL)
+    _TEST_ASSERT_IMPL(cond, TEST_FAILED)
 #define TEST_ASSERT_PASS(cond) \
     _TEST_ASSERT_IMPL(cond, TEST_MESSAGE)
 
