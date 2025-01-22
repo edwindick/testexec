@@ -6,7 +6,7 @@ A single-header library to create simple unit tests as individual executables. M
 
 - Easy to integrate into your project
 - No external dependencies past the C Standard Library
-- Basic assertion and logging functionality
+- Just basic assertion and logging functionality
 
 ## Installing
 
@@ -59,23 +59,6 @@ test(void) {
     TEST_ASSERT_PASS(strcmp(out, "Fizz") == 0)  // False! The program continues
                                                 // anyways.
 
-    char out_arr[15][FIZZBUZZ_MAX_RETURN_SIZE] = { 0 };
-    char valid_arr[15][FIZZBUZZ_MAX_RETURN_SIZE] = {
-        "1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz",
-        "11", "Fizz", "13", "14", "FizzBuzz"
-    };
-
-    for (int i = 0; i < 15; i++) {
-        fizzbuzz(i + 1, out_arr[i]);
-    }
-
-    // `TEST_ASSERT_ARRAYS()` Checks a number elements of the following arrays 
-    // by a specified operator, here that means the first 15 elements of 
-    // `out_arr` and `valid_arr` will be compared to see if they're equal. If
-    // this is not the case the application will exit prematurely, to avoid this
-    // behaviour, use `TEST_ASSERT_ARRAYS_PASS()`.
-    TEST_ASSERT_ARRAYS(out_arr, ==, valid_arr, 15);
-
     // Counterpart would be `TEST_RETURN_FAILED`.
     return TEST_RETURN_PASSED;
 }
@@ -92,10 +75,6 @@ test(void) {
 - `TEST_ASSERT(condition)` 
   - Stops the test if the condition is false.
 - `TEST_ASSERT_PASS(condition)`
-  - Logs failures but continues the test.
-- `TEST_ASSERT_ARRAYS(array1, operator, array2, elements)`
-  - Compares two arrays element-wise.
-- `TEST_ASSERT_ARRAYS_PASS(array1, operator, array2, elements)`
   - Logs failures but continues the test.
 - `TEST_MESSAGE("Message")`
   - Logs a custom message to stdout.

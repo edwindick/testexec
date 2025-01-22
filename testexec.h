@@ -46,20 +46,6 @@
     _TEST_ASSERT_IMPL(cond, TEST_MESSAGE)
 
 
-// This may have to be changed for better readability on failures? In fact why
-// do I even need this? It feels very out of place in a library like this...
-#define _TEST_ASSERT_ARRAYS_IMPL(a, operator, b, elems, func) do { \
-    for (int _test_itr = 0; _test_itr < elems; _test_itr++) { \
-        func(a[_test_itr] operator b[_test_itr]); \
-    } \
-} while(0)
-
-#define TEST_ASSERT_ARRAYS(a, operator, b, elems) \
-    _TEST_ASSERT_ARRAYS_IMPL(a, operator, b, elems, TEST_ASSERT)
-#define TEST_ASSERT_ARRAYS_PASS(a, operator, b, elems) \
-    _TEST_ASSERT_ARRAYS_IMPL(a, operator, b, elems, TEST_ASSERT_PASS)
-
-
 // Because having emptry variable arguments in a macro causes C to dislike you
 // very much.
 static inline void _test_message(const char *file, unsigned int line,
